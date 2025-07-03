@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wurawut Inter Wittaya School</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+  <style>
+    /* กำหนดตำแหน่งเมนูซ้อน */
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu>.dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -0.25rem;
+      margin-left: 0.1rem;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 180px 0 80px 0;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, color-mix(in srgb, #060606, transparent 30%) 0%, color-mix(in srgb, #060606, transparent 60%) 100%);
+      z-index: 2;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .event-overlay {
+      position: relative;
+    }
+
+    .event-overlay::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.5rem;
+      /* ให้กลมตามรูป */
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0));
+      z-index: 1;
+    }
+
+    .carousel-caption {
+      z-index: 2;
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      color: white;
+    }
+
+    .typing-container {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #000;
+      width: fit-content;
+      animation: blinkCursor 0.7s step-end infinite;
+    }
+
+    @keyframes blinkCursor {
+
+      from,
+      to {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: black;
+      }
+    }
+  </style>
+</head>
+
+<body class="">
+  <header id="header" class="fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-between "> -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid container-xxl bd-gutter flex-wrap flex-lg-nowrap">
+        <!-- <p class="text-truncate">Wurawut Inter Wittaya School</p> -->
+        <a class="navbar-brand d-lg-none" href="#home"><img class="w-50" src="assets/img/logo_worawut_md.png"
+            alt="home"></a>
+        <!--  -->
+        <div class="d-lg-none">
+          <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button> -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel">
+
+            <!-- header -->
+            <div class="offcanvas-header">
+              <!-- <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5> -->
+
+              <div class="card border-0 col-12">
+
+                <div class="row g-0">
+                  <div class="col-4">
+                    <div class="ratio ratio-1x1 rounded-circle overflow-hidden">
+                      <img src="assets/img/learning.jpg" alt="">
+                    </div>
+                  </div>
+                  <div class="d-flex col-8 align-items-center ps-2">
+                    <div class="card-body p-0">
+                      <h5 class="card-title m-0">Hi</h5>
+                      <p class="card-text">Pothika W.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- header -->
+
+            <!-- vertic line -->
+            <div class="vr d-none d-lg-flex h-100 mx-lg-2 px-3"></div>
+            <hr class="d-lg-none m-2">
+            <!--  -->
+
+            <!-- body -->
+            <div class="offcanvas-body p-0 d-flex justify-content-between">
+
+              <div class="row g-0 vh">
+                <!-- card 1 -->
+                <div class="col-12">
+
+                  <div class="row g-0 align-items-center mb-1 p-3">
+                    <form class="d-flex" role="search" onsubmit="return handleSearch(event)">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                        id="searchInput" value="">
+                      <button class="btn btn-success" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+                  </div>
+
+                  <p class="mb-0 px-3 text-body-secondary">Menu: <span class="text-body-emphasis">4</span></p>
+                  <div class="list-group pb-3">
+                    <a href="index.php"
+                      class="list-group-item list-group-item-action border-0 rounded-0 text-body-secondary">
+                      <div class="row g-0 align-items-center">
+                        <div class="d-flex col-2 justify-content-center align-items-center">
+                          <i class="bi bi-house-fill"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="card-body p-1">
+                            <p class="card-text">Home</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- 2 -->
+                    <a class="list-group-item list-group-item-action border-0 rounded-0 text-body-secondary"
+                      href="student_data.php">
+                      <div class="row g-0 align-items-center">
+                        <div class="d-flex col-2 justify-content-center align-items-center">
+                          <i class="bi bi-list-nested"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="card-body p-1">
+                            <p class="card-text d-none d-md-inline">ข้อมูลทั่วไป</p>
+                            <p class="card-text d-md-none">ข้อมูลทั่วไป</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- 3 -->
+                    <a class="list-group-item list-group-item-action border-0 text-body-secondary" href="em.php">
+                      <div class="row g-0 align-items-center">
+                        <div class="d-flex col-2 justify-content-center align-items-center">
+                          <i class="bi bi-people-fill"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="card-body p-1">
+                            <p class="card-text d-none d-md-inline">บุคลากร</p>
+                            <p class="card-text d-md-none">บุคลากร</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- 4 -->
+                    <a class="list-group-item list-group-item-action border-0 text-body-secondary"
+                      href="faculty_data.php">
+                      <div class="row g-0 align-items-center">
+                        <div class="d-flex col-2 justify-content-center align-items-center">
+                          <i class="fa fa-university" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="card-body p-1">
+                            <p class="card-text">สถิตินักเรียน</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <!-- 5 -->
+                    <a class="list-group-item list-group-item-action border-0 text-body-secondary"
+                      href="teacher_data.php">
+                      <div class="row g-0 align-items-center">
+                        <div class="d-flex col-2 justify-content-center align-items-center">
+                          <i class="bi bi-person-square" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-10">
+                          <div class="card-body p-1">
+                            <!-- <p class="card-text d-none d-md-inline">ช่องทางติดต่อ</p> -->
+                            <p class="card-text">ช่องทางติดต่อ</p>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+
+                  </div>
+
+                </div>
+                <!-- end card 1 -->
+                <div class="col-12 py-3">
+
+                </div>
+                <div class="row g-0 d-flex mb-3">
+
+                  <!-- search -->
+                  <div class="col-12">
+
+                    <!-- Setting bar -->
+                    <!-- vertic line -->
+                    <div class="vr d-none d-lg-flex h-100 mx-lg-2 px-3"></div>
+                    <hr class="d-lg-none m-2">
+                    <!--  -->
+                    <div class="col">
+                      <div class="row g-0 px-3">
+                        <p class="mb-2 fs-sm text-body-secondary">Settings: <span class="text-body-emphasis">4</span>
+                        </p>
+                      </div>
+                      <div class="row g-0 px-3" style="height: 32px;">
+                        <div class="row g-0 text-center bg-black bg-opacity-25 rounded shadow">
+                          <div class="col-3 d-flex justify-content-center align-items-center">
+                            <i class="bi bi-2-circle-fill"></i>
+                          </div>
+                          <div class="col-3 d-flex justify-content-center align-items-center"><i
+                              class="bi bi-person-circle"></i></div>
+                          <div class="col-3 d-flex justify-content-center align-items-center"><a class="text-reset"
+                              href="index.php"><i class="bi bi-sliders2-vertical"></i></a></div>
+                          <div class="col-3">
+                            <li class="nav-item dropup d-flex">
+                              <button
+                                class="btn btn-link nav-link d-flex justify-content-center align-items-center text-gray-800"
+                                style="height: 32px; width: 32px;" id="bd-theme" type="button" aria-expanded="false"
+                                data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme (dark)">
+                                <svg class="" style="width: 16px; height: 16px; fill: currentColor;">
+                                  <use class="theme-icon" href=""></use>
+                                </svg>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text" width="45px">
+                                <li>
+                                  <button type="button" class="dropdown-item d-flex align-items-center"
+                                    data-bs-theme-value="light" aria-pressed="false" onclick="setTheme('light')">
+                                    <svg class="me-2" style="width: 16px; height: 16px; fill: currentColor;">
+                                      <use href="#sun-fill"></use>
+                                    </svg>
+                                    Light
+                                    <svg class="bi ms-auto d-none">
+                                      <use href="#check2"></use>
+                                    </svg>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button type="button" class="dropdown-item d-flex align-items-center active"
+                                    data-bs-theme-value="dark" aria-pressed="true" onclick="setTheme('dark')">
+                                    <svg class="me-2" style="width: 16px; height: 16px; fill: currentColor;">
+                                      <use href="#moon-stars-fill"></use>
+                                    </svg>
+                                    Dark
+                                    <svg class="bi ms-auto d-none">
+                                      <use href="#check2"></use>
+                                    </svg>
+                                  </button>
+                                </li>
+                                <li>
+                                  <button type="button" class="dropdown-item d-flex align-items-center"
+                                    data-bs-theme-value="auto" aria-pressed="false" onclick="setTheme('auto')">
+                                    <svg class="me-2" style="width: 16px; height: 16px; fill: currentColor;">
+                                      <use href="#circle-half"></use>
+                                    </svg>
+                                    Auto
+                                    <svg class="bi ms-auto d-none">
+                                      <use href="#check2"></use>
+                                    </svg>
+                                  </button>
+                                </li>
+                              </ul>
+                            </li>
+                          </div>
+                        </div>
+                        <!-- End Setting bar -->
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+        <!--  -->
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll align-items-center"
+            style="--bs-scroll-height: 100px;">
+            <li class="nav-item">
+              <a class="nav-link text-end" aria-current="page" href="#home"><img class="img-fluid" style="width: 15%;"
+                  src="assets/img/logo_worawut_md.png" alt=""><span class="ms-1">โรงเรียนวรวุธอินเตอร์วิทยา</span></>
+              </a>
+              <!-- <a class="nav-link" aria-current="page" href="index.php"><i class="bi bi-house-fill"><span
+                    class="d-lg-none">Home</span></i></a> -->
+            </li>
+            <!-- vertic line -->
+            <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+              <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+              <hr class="d-lg-none my-2 text-white-50">
+            </li>
+            <!--  -->
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="index.html">ข้อมูลทั่วไป</a>
+            </li>
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" href="#person">
+                บุคลากร
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">ผู้บริหาร</a></li>
+
+                <!-- ชั้นที่ 1 -->
+                <li class="dropdown-submenu dropend">
+                  <a class="dropdown-item dropdown-toggle" href="#">ครูสายชั้นปฐมวัย</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">อนุบาล 1</a></li>
+
+                    <!-- ชั้นที่ 2 -->
+                    <li class="dropdown-submenu dropend">
+                      <a class="dropdown-item dropdown-toggle" href="#">อนุบาล 2</a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">ครู A</a></li>
+                        <li><a class="dropdown-item" href="#">ครู B</a></li>
+                      </ul>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">อนุบาล 3</a></li>
+                  </ul>
+                </li>
+
+                <li><a class="dropdown-item" href="#">ครูประถมศึกษา</a></li>
+              </ul>
+            </div>
+            <li class="nav-item">
+              <a class="nav-link" href="#stat">สถิตินักเรียน</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">ช่องทางติดต่อ</a>
+            </li>
+
+            <!-- Theme Dropdown -->
+            <li class="nav-item dropdown d-flex align-items-center justify-content-center">
+              <button class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center"
+                id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static"
+                aria-label="Toggle theme (dark)">
+                <!-- The selected theme will be displayed here -->
+                <svg class="" style="width: 16px; height: 16px; fill: currentColor;">
+                  <use class="theme-icon" href=""></use>
+                </svg>
+                <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text" width="45px">
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+                    aria-pressed="false" onclick="setTheme('light')">
+                    <svg class="me-2" style="width: 16px; height: 16px; fill: currentColor;">
+                      <use href="#sun-fill"></use>
+                    </svg>
+                    Light
+                    <svg class="bi ms-auto d-none">
+                      <use href="#check2"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center active"
+                    data-bs-theme-value="dark" aria-pressed="true" onclick="setTheme('dark')">
+                    <svg class="me-2" style="width: 16px; height: 16px; fill: currentColor;">
+                      <use href="#moon-stars-fill"></use>
+                    </svg>
+                    Dark
+                    <svg class="bi ms-auto d-none">
+                      <use href="#check2"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto"
+                    aria-pressed="false" onclick="setTheme('auto')">
+                    <svg class="me-2" style="width: 16px; height: 16px; fill: currentColor;">
+                      <use href="#circle-half"></use>
+                    </svg>
+                    Auto
+                    <svg class="bi ms-auto d-none">
+                      <use href="#check2"></use>
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Hidden SVG symbols for icons -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <symbol id="sun-fill">
+                <path
+                  d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z">
+                </path>
+              </symbol>
+              <symbol id="moon-stars-fill">
+                <path
+                  d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z">
+                </path>
+                <path
+                  d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z">
+                </path>
+              </symbol>
+              <symbol id="circle-half">
+                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
+              </symbol>
+            </svg>
+
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+  </header>
+
+  <main class="">
+    <!-- hero -->
+    <div class="hero " id="hero">
+      <!-- <video autoplay="" muted="" loop="" playsinline="" class="video-background">
+                <source src="assets/img/
+                " type="video/mp4">
+            </video> -->
+      <img class="hero-video" src="assets/img/std.jpg" alt="hero">
+      <div class="overlay"></div>
+      <div class="container z-3">
+        <div class="row align-items-center">
+          <div class="col-lg-7 aos-init aos-animate mb-5" data-aos="zoom-out" data-aos-delay="100">
+            <div class="text-center text-md-start">
+              <h1>Wurawut Inter Wittaya School</h1>
+              <p>โรงเรียนวรวุธอินเตอร์วิทยา
+              </p>
+              <div class="">
+                <a href="#สมัครเรียน" class="btn border bg-primary fw-5">สมัครเรียน</a>
+                <a href="#" class="btn-secondary"></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 aos-init aos-animate" data-aos="zoom-out" data-aos-delay="200">
+            <div class="card container text-center" style="    background-color: 
+color-mix(in srgb, var(--surface-color), transparent 95%);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);">
+              <div class="card-header bg-transparent">
+                <h3>Why Choose Us</h3>
+                <div class=""></div>
+              </div>
+              <div class="card-body row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-2">
+                <div class="col d-flex align-items-center mb-2">
+                  <div class="border rounded-3 px-3 py-2 me-2 bg-primary">
+                    <i class="fs-5 fw-bold bi bi-trophy-fill"></i>
+                  </div>
+                  <div class="col text-start">
+                    <h4 class="m-0">98%</h4>
+                    <p class="m-0">Graduate Employment</p>
+                  </div>
+                </div>
+                <div class="col d-flex align-items-center mb-2">
+                  <div class="border rounded-3 px-3 py-2 me-2 bg-primary">
+                    <i class="fs-5 fw-bold bi bi-globe"></i>
+                  </div>
+                  <div class="col text-start">
+                    <h4 class="m-0">45+</h4>
+                    <p class="m-0">International Partners</p>
+                  </div>
+                </div>
+                <div class="col d-flex align-items-center mb-2">
+                  <div class="border rounded-3 px-3 py-2 me-2 bg-primary">
+                    <i class="fs-5 fw-bold bi bi-mortarboard"></i>
+                  </div>
+                  <div class="col text-start">
+                    <h4 class="m-0">15:1</h4>
+                    <p class="m-0">Student-Faculty Ratio</p>
+                  </div>
+                </div>
+                <div class="col d-flex align-items-center mb-2">
+                  <div class="border rounded-3 px-3 py-2 me-2 bg-primary">
+                    <i class="fs-5 fw-bold bi bi-building"></i>
+                  </div>
+                  <div class="col text-start">
+                    <h4 class="m-0">120+</h4>
+                    <p class="m-0">Degree Programs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="d-flex flex-column align-items-center mb-5 bg-black py-2" style="height: 60px;">
+      <div class="typing-container" id="typing"></div>
+    </div>
+
+    <div class="d-flex flex-column align-items-center mb-2">
+      <h3 class="">ข่าวกิจกรรม / ประกาศ</h3>
+      <span class="border-bottom border-bottom-5 w-25"></span>
+    </div>
+
+    <!-- act -->
+    <div id="act" class="mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-12 col-xl-6">
+            <div id="carouselExampleCaptions" class="carousel slide">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                  aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                  aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                  aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner p-2">
+                <div class="carousel-item active event-layout">
+                  <img src="assets/img/std.jpg" class="d-block w-100 rounded-3" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                    <p class="card-text m-0"><i class="bi bi-calendar-event me-1"></i><small>Last updated 3 mins
+                        ago</small></p>
+                  </div>
+                </div>
+                <div class="carousel-item active event-overlay">
+                  <img src="assets/img/std.jpg" class="d-block w-100 rounded-3" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                    <p class="card-text m-0"><i class="bi bi-calendar-event me-1"></i><small>Last updated 3 mins
+                        ago</small></p>
+                  </div>
+                </div>
+                <div class="carousel-item event-overlay">
+                  <img src="assets/img/std.jpg" class="d-block w-100 rounded-3" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                  </div>
+                </div>
+                <div class="carousel-item event-overlay">
+                  <img src="assets/img/std.jpg" class="d-block w-100 rounded-3" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <!-- 4 grid -->
+          <div class="col-12 col-md-12 col-xl-6">
+            <div class="container align-items-bottom">
+              <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-2">
+                <a href="#event-image" class="col p-2">
+                  <div class="card text-bg-dark">
+                    <img src="assets/img/std.jpg" class="card-img" alt="...">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end bg-black bg-opacity-25"
+                      style="background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(255,255,255,0));">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text text-truncate col-12 m-0">This is a wider card with supporting text below as a
+                        natural lead-in to
+                        additional content. This content is a little bit
+                        longerdfsssssssssssadsffffffffffdfsssssssssssssssssssssfsdddddddddddddd.</p>
+                      <p class="card-text m-0"><i class="bi bi-calendar-event me-1"></i><small>Last updated 3 mins
+                          ago</small></p>
+                    </div>
+                  </div>
+                </a>
+                <a href="#event-image" class="col p-2">
+                  <div class="card text-bg-dark">
+                    <img src="assets/img/std.jpg" class="card-img" alt="...">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end bg-black bg-opacity-25"
+                      style="background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(255,255,255,0));">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text text-truncate col-12 m-0">This is a wider card with supporting text below as a
+                        natural lead-in to
+                        additional content. This content is a little bit
+                        longerdfsssssssssssadsffffffffffdfsssssssssssssssssssssfsdddddddddddddd.</p>
+                      <p class="card-text m-0"><i class="bi bi-calendar-event me-1"></i><small>Last updated 3 mins
+                          ago</small></p>
+                    </div>
+                  </div>
+                </a>
+                <a href="#event-image" class="col p-2">
+                  <div class="card text-bg-dark">
+                    <img src="assets/img/std.jpg" class="card-img" alt="...">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end bg-black bg-opacity-25"
+                      style="background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(255,255,255,0));">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text text-truncate col-12 m-0">This is a wider card with supporting text below as a
+                        natural lead-in to
+                        additional content. This content is a little bit
+                        longerdfsssssssssssadsffffffffffdfsssssssssssssssssssssfsdddddddddddddd.</p>
+                      <p class="card-text m-0"><i class="bi bi-calendar-event me-1"></i><small>Last updated 3 mins
+                          ago</small></p>
+                    </div>
+                  </div>
+                </a>
+                <a href="#event-image" class="col p-2">
+                  <div class="card text-bg-dark">
+                    <img src="assets/img/std.jpg" class="card-img" alt="...">
+                    <div class="card-img-overlay d-flex flex-column justify-content-end bg-black bg-opacity-25"
+                      style="background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text text-truncate col-12 m-0">This is a wider card with supporting text below as a
+                        natural lead-in to
+                        additional content. This content is a little bit
+                        longerdfsssssssssssadsffffffffffdfsssssssssssssssssssssfsdddddddddddddd.</p>
+                      <p class="card-text m-0"><i class="bi bi-calendar-event me-1"></i><small>Last updated 3 mins
+                          ago</small></p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn">ดูเพิ่มเติม</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="" class="mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-xl-8">
+            <div class="card">
+              <div class="card-header bg-transparent border-0 text-center">
+                <h4>Wurawut Inter Wittaya School</h4>
+              </div>
+              <div class="card-body text-center mb-2">
+                <div class="">
+                  <img class="img-fluid" src="assets/img/wireframe.png" alt="">
+                </div>
+              </div>
+              <div class="card-body text-center mb-2">
+                <div class="">
+                  <img class="img-fluid" src="assets/img/wireframe.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-4">
+            <div class="card">
+              <div class="card-header text-center">
+                <h4>ผู้บริหาร</h4>
+              </div>
+              <div class="card-body">
+                <div class="col mb-3">
+                  <div class="card h-100">
+                    <img class="img-fluid" src="../onlinelesson/iLanding/iLanding/assets/img/avatar-2.webp" alt="">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">ชื่อจริง นามสกุล</h5>
+                      <p class="card-text">ผู้อำนวยการ</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-3">
+                  <div class="card h-100">
+                    <img class="img-fluid" src="../onlinelesson/iLanding/iLanding/assets/img/avatar-2.webp" alt="">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">ชื่อจริง นามสกุล</h5>
+                      <p class="card-text">รองผู้อำนวยการ</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col mb-3">
+                  <div class="card h-100">
+                    <img class="img-fluid" src="../onlinelesson/iLanding/iLanding/assets/img/avatar-2.webp" alt="">
+                    <div class="card-body text-center">
+                      <h5 class="card-title">ชื่อจริง นามสกุล</h5>
+                      <p class="card-text">รองผู้อำนวยการ</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer class="d-flex bg-black px-2 py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-xl-6">
+          <div class="">
+            <h3 class="fw-bold">ติดต่อเรา</h3>
+          </div>
+          <h5>Wurawut Inter Wittaya School</h5>
+          <p class="m-0">ที่อยู...</ย>
+          <p class="m-0">โทร.</p>
+          <p class="m-0">E-mial:</p>
+        </div>
+        <div class="col-12 col-xl-6 my-5 my-xl-0">
+          <h3 class="fw-bold">แผนที่ตำแหน่งที่ตั้ง</h3>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.7854005270265!2d100.5127900750898!3d13.731438486658238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e299466f01eaff%3A0x6a4d4a6666fe5e53!2sOld%20Maps%20%26%20Prints!5e0!3m2!1sth!2sth!4v1751573495860!5m2!1sth!2sth"
+            width="300" height="225" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- <a href="#" id="scroll-top"><i class="bi bi-arrow-up-short"></i></a> -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+  <script>
+    // เปิดเมนู dropdown ชั้น 2
+    document.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const submenu = el.nextElementSibling;
+        if (submenu) {
+          submenu.classList.toggle('show');
+        }
+
+        // ปิดเมนูอื่นในระดับเดียวกัน
+        el.closest('.dropdown-menu').querySelectorAll('.dropdown-menu').forEach(function (other) {
+          if (other !== submenu) other.classList.remove('show');
+        });
+      });
+    });
+
+    // ปิด submenu เมื่อ dropdown หลักปิด
+    document.querySelectorAll('.dropdown').forEach(function (drop) {
+      drop.addEventListener('hide.bs.dropdown', function () {
+        drop.querySelectorAll('.dropdown-menu.show').forEach(function (menu) {
+          menu.classList.remove('show');
+        });
+      });
+    });
+  </script>
+  <script>
+    // ฟังก์ชันเพื่อเปลี่ยนธีม
+    function setTheme(theme) {
+      const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      let themeIcon;
+
+      // ตรวจสอบไอคอนตามธีม
+      if (theme === 'auto') {
+        themeIcon = '#circle-half'; // ใช้ #circle-half สำหรับ auto
+        $('html').attr('data-bs-theme', isDarkMode ? 'dark' : 'light');
+      } else {
+        themeIcon = theme === 'dark' ? '#moon-stars-fill' : '#sun-fill';
+        $('html').attr('data-bs-theme', theme);
+      }
+
+      // เปลี่ยนไอคอนในทุกจุดที่มี .theme-icon
+      document.querySelectorAll('.theme-icon').forEach((icon) => {
+        icon.setAttribute('href', themeIcon);
+      });
+
+      // ตั้งค่า active ให้ปุ่มที่เลือก
+      $('[data-bs-theme-value]').removeClass('active');
+      $(`[data-bs-theme-value="${theme}"]`).addClass('active');
+
+      // เก็บค่าธีมใน localStorage
+      localStorage.setItem('theme', theme);
+    }
+
+    // โหลดธีมจาก localStorage หรือใช้ค่าเริ่มต้นเป็น 'auto'
+    const savedTheme = localStorage.getItem('theme') || 'auto';
+    setTheme(savedTheme);
+
+    // อัปเดตธีมเมื่อระบบเปลี่ยนโหมด
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (localStorage.getItem('theme') === 'auto') {
+        setTheme('auto');
+      }
+    });
+
+    // เมื่อผู้ใช้คลิกปุ่มเปลี่ยนธีม
+    $('[data-bs-theme-value]').on('click', function () {
+      const selectedTheme = $(this).data('bs-theme-value');
+      setTheme(selectedTheme);
+    });
+  </script>
+  <script>
+    const messages = [
+      "📢 รับสมัครนักเรียนใหม่ ปีการศึกษา 2568!",
+      "🎓 เรียนรู้ด้วยเทคโนโลยีทันสมัย",
+      "📅 เปิดเรียนเดือนพฤษภาคมนี้",
+      "🏫 สอบถามเพิ่มเติมได้ที่โรงเรียนของเรา"
+    ];
+
+    const typingElement = document.getElementById('typing');
+    let messageIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const currentMessage = messages[messageIndex];
+      let displayedText = currentMessage.substring(0, charIndex);
+      typingElement.textContent = displayedText;
+
+      if (!isDeleting && charIndex < currentMessage.length) {
+        charIndex++;
+        setTimeout(typeEffect, 100); // typing speed
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(typeEffect, 50); // delete speed
+      } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) {
+          messageIndex = (messageIndex + 1) % messages.length;
+        }
+        setTimeout(typeEffect, 1000); // pause between messages
+      }
+    }
+
+    typeEffect();
+    // ดึง URL ปัจจุบันของหน้าเว็บ
+    const currentUrl = window.location.href;
+
+    // เลือกทุกลิงก์ภายในเมนู (หรือทั้งหน้า)
+    const menuLinks = document.querySelectorAll('.nav-link');
+
+    menuLinks.forEach(link => {
+      if (link.href === currentUrl) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active'); // ลบ active ออกจากลิงก์อื่น (ถ้ามี)
+      }
+    });
+  </script>
+</body>
+
+</html>
